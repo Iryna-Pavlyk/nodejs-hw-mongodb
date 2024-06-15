@@ -1,11 +1,11 @@
 import express from 'express';
 import cors from 'cors';
 import pino from 'pino-http';
-import { env } from '.env';
+import { env } from './env.js';
 
 const PORT = Number(env('PORT', '3000'));
 
-const setupServer = () => {
+export const setupServer = () => {
   const app = express();
 
   app.use(cors());
@@ -16,6 +16,12 @@ const setupServer = () => {
     }),
   );
 
+  app.get('/', (req, res) => {
+    res.json({
+      message: 'Hello world!',
+    });
+  });
+
   app.use('*', (req, res, next) => {
     res.status(404).json({ message: 'Not found' });
   });
@@ -24,5 +30,3 @@ const setupServer = () => {
     console.log(`Server is running on port ${PORT}`);
   });
 };
-
-export default setupServer;
