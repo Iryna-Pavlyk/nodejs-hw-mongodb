@@ -2,7 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import pino from 'pino-http';
 import { env } from './env.js';
-import { getAllContacts, getContactById } from './contacts.js';
+import { getAllContacts, getContactById } from './services/contacts.js';
 
 const PORT = Number(env('PORT', '3000'));
 
@@ -34,6 +34,7 @@ export const setupServer = () => {
       res.status(400).json({
         message: 'Contact  not found',
       });
+      return;
     }
 
     res.status(200).json({
