@@ -7,12 +7,17 @@ export const getContactById = (contactId) => Contact.findById(contactId);
 export const createContact = (data) => Contact.create(data);
 
 export const updateContact = async (contactId, data, options = {}) => {
-  const result = await Contact.findByIdAndUpdate({ _id: contactId }, data, {
+  const result = await Contact.findOneAndUpdate({ _id: contactId }, data, {
+    new: true,
+    includeResultMetadata: true,
     ...options,
   });
 
+  if (!result || !result.value) return null;
+
   return {
-    contact: result.value,
+    data: result.value,
+    isNew: Boolean(result?.lastErrorObject?.upserted),
   };
 };
 
