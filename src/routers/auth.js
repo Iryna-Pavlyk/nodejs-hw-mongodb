@@ -12,19 +12,19 @@ import { ctrlWrapper } from '../utils/ctrlWrapper.js';
 const authRouter = Router();
 
 authRouter.post(
-  '/auth/register',
+  '/register',
   validateBody(registerUserSchema),
   ctrlWrapper(registerUserController),
 );
 
 authRouter.post(
-  '/auth/login',
+  '/login',
   validateBody(loginUserSchema),
   ctrlWrapper(loginUserController),
 );
 
-authRouter.post('/auth/refresh', ctrlWrapper(refreshUserController));
+authRouter.post('/refresh', ctrlWrapper(refreshUserController));
 
-authRouter.post('/auth/logout', ctrlWrapper(logoutUserController));
+authRouter.post('/logout', ctrlWrapper(logoutUserController));
 
 export default authRouter;

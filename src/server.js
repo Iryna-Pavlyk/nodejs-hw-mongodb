@@ -4,8 +4,7 @@ import pino from 'pino-http';
 import { env } from './env.js';
 import { errorHandler } from './middlewares/errorHandler.js';
 import { notFoundHandler } from './middlewares/notFoundHandler.js';
-import router from './routers/contacts.js';
-import authRouter from './routers/auth.js';
+import router from './routers/index.js';
 import cookieParser from 'cookie-parser';
 
 const PORT = Number(env('PORT', '3000'));
@@ -26,8 +25,6 @@ export const setupServer = () => {
   app.use(cookieParser());
 
   app.use(router);
-
-  app.use(authRouter);
 
   app.use(errorHandler);
 
