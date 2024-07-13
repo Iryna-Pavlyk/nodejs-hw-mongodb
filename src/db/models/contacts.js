@@ -24,6 +24,7 @@ const contactsSchema = new Schema(
       enam: ['personal', 'work', 'home'],
       default: 'personal',
     },
+    userId: { type: Schema.Types.ObjectId, ref: 'users', required: true },
   },
   { versionKey: false, timestamps: true },
 );
