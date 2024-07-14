@@ -45,7 +45,7 @@ export const getAllContacts = async ({
 };
 
 export const getContactById = (contactId, userId) =>
-  Contact.findById(contactId, userId);
+  Contact.findOne({ _id: contactId, userId });
 
 export const createContact = (data) => Contact.create(data);
 
@@ -68,5 +68,5 @@ export const updateContact = async (contactId, userId, data, options = {}) => {
   };
 };
 
-export const deleteContact = (contactId) =>
-  Contact.findOneAndDelete({ _id: contactId });
+export const deleteContact = (contactId, userId) =>
+  Contact.findOneAndDelete({ _id: contactId, userId });
