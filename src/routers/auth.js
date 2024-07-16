@@ -1,30 +1,41 @@
 import { Router } from 'express';
-import { loginUserSchema, registerUserSchema } from '../validate/auth.js';
+import {
+  loginUserSchema,
+  registerUserSchema,
+  requestResetEmailSchema,
+} from '../validate/auth.js';
 import {
   loginUserController,
   logoutUserController,
   refreshUserController,
   registerUserController,
+  requestResetEmailController,
 } from '../controllers/auth.js';
 import { validateBody } from '../middlewares/validateBody.js';
 import { ctrlWrapper } from '../utils/ctrlWrapper.js';
 
-const authRouter = Router();
+const router = Router();
 
-authRouter.post(
+router.post(
   '/register',
   validateBody(registerUserSchema),
   ctrlWrapper(registerUserController),
 );
 
-authRouter.post(
+router.post(
   '/login',
   validateBody(loginUserSchema),
   ctrlWrapper(loginUserController),
 );
 
-authRouter.post('/refresh', ctrlWrapper(refreshUserController));
+router.post('/refresh', ctrlWrapper(refreshUserController));
 
-authRouter.post('/logout', ctrlWrapper(logoutUserController));
+router.post('/logout', ctrlWrapper(logoutUserController));
 
-export default authRouter;
+router.post(
+  '/send-reset-email',
+  validateBody(requestResetEmailSchema),
+  ctrlWrapper(requestResetEmailController),
+);
+
+export default router;
