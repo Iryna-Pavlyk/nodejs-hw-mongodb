@@ -5,7 +5,7 @@ export const createDirIfNotExist = async (url) => {
     await fs.access(url);
   } catch (error) {
     if (error.code === 'ENOENT') {
-      fs.mkdir(url);
+      await fs.mkdir(url);
     }
   }
 };
