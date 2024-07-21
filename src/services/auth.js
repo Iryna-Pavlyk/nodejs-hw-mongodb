@@ -97,9 +97,9 @@ export const requestResetToken = async (email) => {
     'reset-password-email.html',
   );
 
-  const templateSourse = await fs
-    .readFile(resetPasswordTemplatePath)
-    .toString();
+  const templateSourse = (
+    await fs.readFile(resetPasswordTemplatePath)
+  ).toString();
 
   const template = Handlebars.compile(templateSourse);
 
@@ -114,4 +114,33 @@ export const requestResetToken = async (email) => {
     subject: 'Reset your password',
     html,
   });
+};
+
+export const resetPassword = async (payload) => {
+  let entries;
+
+  try {
+    entries = jwt.verify(payload.token, env('JWT_SECRET'));
+  } catch (error) {
+    if (error instanceof Error) throw createHttpError(401, error.message);
+    throw error;
+  }
+
+  const user = await User.findOne({
+    email: entries.email,
+    _id: entries.sub,
+  });
+
+  if (!user) {
+    throw createHttpError(404, 'User not found!');
+  }
+
+  const encryptedPwd = await bcrypt.hash(payload.password, 10);
+
+  await User.updateOne(
+    {
+      _id: user._id,
+    },
+    { password: encryptedPwd },
+  );
 };
