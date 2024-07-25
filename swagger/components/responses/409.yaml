@@ -1,6 +1,4 @@
-# swagger/components/responses/401.yaml
-
-description: NotFoundError
+description: ConflictError
 content:
   application/json:
     schema:
@@ -12,10 +10,10 @@ content:
       properties:
         status:
           type: integer
-          example: 404
+          example: 409
         message:
           type: string
-          example: NotFoundError
+          example: ConflictError
         data:
           type: object
           required:
@@ -23,4 +21,4 @@ content:
           properties:
             message:
               type: string
-              example: 'Contact with id 65ca67e7ae7f10c88b598384 not found'
+              example: 'Email in use'
