@@ -1,9 +1,7 @@
 type: object
 required:
-  - _id
   - name
   - email
-  - password
 properties:
   _id:
     description: "User's id"
@@ -17,7 +15,7 @@ properties:
     description: "Contact's email"
     type: string
     example: irina@mail.com
-  password:
-    description: "User's password"
+  accessToken:
+    description: "User's accessToken"
     type: string
-    example: 11111
+    example: 'zBjaZKgFS/Md+br4xj9Mt2LK+1RfvpukB4iGo6zC'

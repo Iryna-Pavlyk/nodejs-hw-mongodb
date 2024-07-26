@@ -21,7 +21,7 @@ requestBody:
             type: string
             example: 11111
 responses:
-  '200':
+'200':
     description: 'Successfully logged a user'
     content:
       application/json:
@@ -40,10 +40,10 @@ responses:
               example: Successfully logged a user!
             data:
               type: object
-              $ref: '../../components/schemas/session.yaml'
+              $ref: '../../../components/schemas/session.yaml'
   '401':
-    $ref: '../../components/responses/401.yaml'
+    $ref: '../../../components/responses/401.yaml'
   '404':
-    $ref: '../../components/responses/404.yaml'
+    $ref: '../../../components/responses/404.yaml'
   '500':
-    $ref: '../../components/responses/500.yaml'
+    $ref: '../../../components/responses/500.yaml'
