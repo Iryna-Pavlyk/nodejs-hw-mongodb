@@ -3,7 +3,10 @@ tags:
 summary: Reset password
 operationId: resetPassword
 description: 'Reset password with payload'
+security:
+  - bearerAuth: []
 requestBody:
+  required: true
   content:
     application/json:
       schema:
@@ -42,8 +45,8 @@ responses:
               type: object
               example: {}
   '401':
-    $ref: '../../components/responses/401.yaml'
+    $ref: '../../../components/responses/401.yaml'
   '400':
-    $ref: '../../components/responses/400.yaml'
+    $ref: '../../../components/responses/400.yaml'
   '500':
-    $ref: '../../components/responses/500.yaml'
+    $ref: '../../../components/responses/500.yaml'

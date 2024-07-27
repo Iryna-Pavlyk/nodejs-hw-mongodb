@@ -3,7 +3,10 @@ tags:
 summary: Refresh user
 operationId: refreshUser
 description: 'Refresh a user with payload'
+security:
+  - bearerAuth: []
 requestBody:
+  required: true
   content:
     application/json:
       schema:
@@ -40,8 +43,8 @@ responses:
               example: Successfully refreshed a session!
             data:
               type: object
-              $ref: '../../components/schemas/session.yaml'
+              $ref: '../../../components/schemas/session.yaml'
   '401':
-    $ref: '../../components/responses/401.yaml'
+    $ref: '../../../components/responses/401.yaml'
   '500':
-    $ref: '../../components/responses/500.yaml'
+    $ref: '../../../components/responses/500.yaml'

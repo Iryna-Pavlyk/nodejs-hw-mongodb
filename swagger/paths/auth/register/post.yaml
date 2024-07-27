@@ -3,6 +3,8 @@ tags:
 summary: Register user
 operationId: registerUser
 description: 'Register a user with payload'
+security:
+  - bearerAuth: []
 requestBody:
   required: true
   content:
@@ -27,7 +29,7 @@ requestBody:
             type: string
             example: 11111
 responses:
-'201':
+  '201':
     description: 'Successfully registered a user'
     content:
       application/json:
@@ -46,8 +48,7 @@ responses:
               example: Successfully registered a user!
             data:
               type: object
-              example: {}
-              # $ref: '../../../components/schemas/user.yaml'
+              $ref: '../../../components/schemas/user.yaml'
   '409':
     $ref: '../../../components/responses/409.yaml'
   '400':

@@ -3,7 +3,10 @@ tags:
 summary: Send reset email
 operationId: sendResetEmail
 description: 'Send reset email with payload'
+security:
+  - bearerAuth: []
 requestBody:
+  required: true
   content:
     application/json:
       schema:
@@ -37,8 +40,8 @@ responses:
               type: object
               example: {}
   '404':
-    $ref: '../../components/responses/404.yaml'
+    $ref: '../../../components/responses/404.yaml'
   '400':
-    $ref: '../../components/responses/400.yaml'
+    $ref: '../../../components/responses/400.yaml'
   '500':
-    $ref: '../../components/responses/500.yaml'
+    $ref: '../../../components/responses/500.yaml'

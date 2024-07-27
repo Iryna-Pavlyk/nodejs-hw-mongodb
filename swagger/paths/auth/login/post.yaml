@@ -3,7 +3,10 @@ tags:
 summary: Login user
 operationId: loginUser
 description: 'Login a user with payload'
+security:
+  - bearerAuth: []
 requestBody:
+  required: true
   content:
     application/json:
       schema:
@@ -21,7 +24,7 @@ requestBody:
             type: string
             example: 11111
 responses:
-'200':
+  '200':
     description: 'Successfully logged a user'
     content:
       application/json:
